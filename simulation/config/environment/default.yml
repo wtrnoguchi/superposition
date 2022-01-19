@@ -1,0 +1,5 @@
+world: default
+
+agent:
+  self: stay
+  other: stay

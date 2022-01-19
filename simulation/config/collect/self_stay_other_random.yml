@@ -1,0 +1,11 @@
+grid: False
+other_vision: True
+n_data:
+  train: 100
+  test: 100
+seq_length: 101
+environment:
+  world: default
+  agent:
+    self: stay
+    other: random

@@ -1,0 +1,7 @@
+base: base
+type: PeriodicAgent
+targets:
+  - [8., 8.]
+  - [-8., 8.]
+  - [-8., -8.]
+  - [8., -8.]

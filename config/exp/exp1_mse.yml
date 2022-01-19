@@ -1,0 +1,32 @@
+model:
+  name: SuperpositionNetworkFeaturePrediction
+  config: default
+  mode: ~
+runner: PredictionFeaturePredictionRunner
+data:
+  name: self_random_other_stay
+load_state_dict_strict: False
+p_mask_vision: 0.99
+train:
+  loss_function: mse_loss
+  pretrain: ~
+  batch_size: 10
+  max_epochs: 200
+  save_interval: 1
+  test_interval: 10
+  optimizer: AdamW
+  optim_config:
+    default:
+      lr: 0.001
+      weight_decay: 0.01
+    freeze: ~
+    per_params:
+      - name: bias
+        args:
+          weight_decay: 0.0
+      - name: vision_encoder
+        args:
+          weight_decay: 0.001
+      - name: share_lns
+        args:
+          weight_decay: 0.001

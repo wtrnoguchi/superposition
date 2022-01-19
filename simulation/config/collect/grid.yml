@@ -1,0 +1,8 @@
+grid: True
+other_vision: True
+num_div: 21
+environment:
+  world: default
+  agent:
+    self: stay
+    other: stay

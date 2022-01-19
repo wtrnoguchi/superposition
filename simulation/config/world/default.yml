@@ -1,0 +1,28 @@
+model:
+    field: field.obj
+    self: self.obj
+    other: other.obj
+xmin: -10
+xmax: 10
+ymin: -10
+ymax: 10
+
+eye_level: 2
+camera:
+    agent:
+        near: 0.1
+        far: 100
+        vfov: 60
+        hfov: 360
+        n_camera: 8
+        width: 64
+        height: 16
+    overview:
+        near: 0.1
+        far: 100
+        vfov: 60
+        hfov: 360
+        n_camera: 1
+        width: 128
+        height: 128
+        overview_area: [[-20, 20], [-20, 20]]

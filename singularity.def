@@ -1,0 +1,22 @@
+Bootstrap: docker
+From: nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
+
+%environment
+    export PYTHONDONTWRITEBYTECODE=1
+
+%post
+    apt update
+    DEBIAN_FRONTEND=noninteractive apt install -y libopencv-dev
+    apt install -y python3 python3-pip libsm6 libxrender1 libxext6 libfontconfig1 libjpeg-dev zlib1g-dev imagemagick
+    pip3 install --upgrade pip
+    pip3 install torch==1.9.0
+    pip3 install torchvision==0.10.0
+    pip3 install h5py pyyaml matplotlib scikit-learn opencv-python PyOpenGL glfw
+    pip3 install h5py==3.5.0
+    pip3 install pyyaml==6.0
+    pip3 install matplotlib==3.4.3
+    pip3 install scikit-learn==1.0.1
+    pip3 install opencv-python==4.5.4.58
+    pip3 install PyOpenGL==3.1.5
+    pip3 install glfw==2.4.0
+    pip3 install tqdm==4.62.3

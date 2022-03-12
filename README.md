@@ -1,8 +1,6 @@
 # Superposition mechanism as a neural basis for understanding others
 
-This repository provides an implementation of the simulation experiments in the paper "Superposition mechanism as a neural basis for understanding others" by Wataru Noguchi, Hiroyuki Iizuka, Masahito Yamamoto, and Shigeru Taguchi.
-
-Paper information will be updated after acceptance.
+This repository provides an implementation of the simulation experiments in the paper ["Superposition mechanism as a neural basis for understanding others"](https://doi.org/10.1038/s41598-022-06717-3) by Wataru Noguchi, Hiroyuki Iizuka, Masahito Yamamoto, and Shigeru Taguchi.
 
 All the datasets and results of the paper can be reproduced by the codes in this repository.
 

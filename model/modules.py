@@ -186,7 +186,7 @@ class SuperpositionModule(nn.Module, RNNBase):
         return next_sh, next_oh
 
 
-class PolicyModule(nn.Module, RNNBase):
+class MotionGeneratorModule(nn.Module, RNNBase):
     def __init__(self, config):
         super().__init__()
         self.config = config
@@ -200,16 +200,16 @@ class PolicyModule(nn.Module, RNNBase):
         init_h = torch.zeros((batch_size, self.config.hidden), device=device)
         init_c = torch.zeros((batch_size, self.config.hidden), device=device)
         self.state = {
-            'policy': LSTMState(init_h, init_c),
+            'motion_generator': LSTMState(init_h, init_c),
         }
 
     def forward(self, x):
 
-        h, c = self.state['policy']
+        h, c = self.state['motion_generator']
 
         next_h, next_c = self.lstm(x, (h, c))
 
-        self.state['policy'] = LSTMState(next_h, next_c)
+        self.state['motion_generator'] = LSTMState(next_h, next_c)
 
         o = torch.tanh(self.fc(next_h))
 

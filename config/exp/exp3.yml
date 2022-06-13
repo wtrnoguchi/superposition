@@ -1,8 +1,8 @@
 model:
-  name: SuperpositionNetworkPolicyFeaturePrediction
+  name: SuperpositionNetworkMotionGenerationFeaturePrediction
   config: default
   mode: ~
-runner: PolicyPredictionFeaturePredictionRunner
+runner: MotionGenerationPredictionFeaturePredictionRunner
 data:
   name: self_random_other_stay_periodic
 load_state_dict_strict: False

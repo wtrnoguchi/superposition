@@ -32,8 +32,8 @@ if __name__ == "__main__":
 
     with open(save_dir + 'correlation.txt', 'w') as f:
         neurons = [
-            'other neuron #1', 'other neuron #2', 'policy neuron #1',
-            'policy neuron #2'
+            'other neuron #1', 'other neuron #2', 'motion generator neuron #1',
+            'motion generator neuron #2'
         ]
         for i in range(corr_mat.shape[0]):
             for j in range(corr_mat.shape[1]):

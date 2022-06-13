@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 from . import util
 from .base import WithRNNModuleBase
-from .modules import (FeaturePredictionModule, IntegrationModule, PolicyModule,
+from .modules import (FeaturePredictionModule, IntegrationModule, MotionGeneratorModule,
                       SuperpositionModule, VisionDecoderModule,
                       VisionEncoderModule)
 
@@ -48,9 +48,9 @@ def add_superposition_module(self, config):
     self.rnn_modules.append(self.superposition_module)
 
 
-def add_policy_module(self, config):
-    self.policy_module = PolicyModule(config.policy_module)
-    self.rnn_modules.append(self.policy_module)
+def add_motion_generator_module(self, config):
+    self.motion_generator_module = MotionGeneratorModule(config.motion_generator_module)
+    self.rnn_modules.append(self.motion_generator_module)
 
 
 class SuperpositionNetworkBase(nn.Module, WithRNNModuleBase):
@@ -112,10 +112,10 @@ class Autoencoder(nn.Module):
         return rec
 
 
-class SuperpositionNetworkPolicy(SuperpositionNetworkBase):
+class SuperpositionNetworkMotionGeneration(SuperpositionNetworkBase):
     def __init__(self, config):
         super().__init__(config)
-        add_policy_module(self, config)
+        add_motion_generator_module(self, config)
 
     def forward(self, x, p_mask_vision_self, p_mask_vision_other):
         sv = x['self_vision']
@@ -124,7 +124,7 @@ class SuperpositionNetworkPolicy(SuperpositionNetworkBase):
         sv_enc = self.self_vision_encoder_module(sv)
         ov_enc = self.other_vision_encoder_module(sv)
 
-        om = self.policy_module(ov_enc)
+        om = self.motion_generator_module(ov_enc)
 
         sv_enc = util.mask(sv_enc, p_mask_vision_self)
         ov_enc = util.mask(ov_enc, p_mask_vision_other)
@@ -152,7 +152,7 @@ class SuperpositionNetworkFeaturePrediction(SuperpositionNetwork):
         return self.feature_prediction_module(x)
 
 
-class SuperpositionNetworkPolicyFeaturePrediction(SuperpositionNetworkPolicy):
+class SuperpositionNetworkMotionGenerationFeaturePrediction(SuperpositionNetworkMotionGeneration):
     def __init__(self, config):
         super().__init__(config)
         add_feature_prediction_module(self, config)

@@ -3,8 +3,8 @@
 ### Figure 4c
 
 - data/result/exp1_l1/0/test/self_random_other_stay/save/00200/eval/state/map_by_self_eval/
-  - self/self_position/animation/
-  - other/other_position/animation/
+  - self/self_position/
+  - other/other_position/
 
 ### Figure 4d
 
